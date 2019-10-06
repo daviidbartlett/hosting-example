@@ -4,7 +4,9 @@
   "description": "Lecture example for backend block review week using wizards data",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "setup-dbs": "psql -f db/setup.sql",
+    "migrate-make": "knex migrate:make"
   },
   "repository": {
     "type": "git",
@@ -16,5 +18,9 @@
   "bugs": {
     "url": "https://github.com/northcoders/be-wizards-example/issues"
   },
-  "homepage": "https://github.com/northcoders/be-wizards-example#readme"
+  "homepage": "https://github.com/northcoders/be-wizards-example#readme",
+  "dependencies": {
+    "knex": "^0.19.4",
+    "pg": "^7.12.1"
+  }
 }
