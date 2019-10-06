@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "setup-dbs": "psql -f db/setup.sql",
     "migrate-make": "knex migrate:make",
-    "seed-db": "knex seed:run"
+    "seed-db": "knex seed:run",
+    "test-utils": "mocha spec/utils.spec.js"
   },
   "repository": {
     "type": "git",
@@ -23,5 +24,9 @@
   "dependencies": {
     "knex": "^0.19.4",
     "pg": "^7.12.1"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.2.1"
   }
 }
