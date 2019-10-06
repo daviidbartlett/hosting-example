@@ -5,3 +5,10 @@ exports.createRef = (list, { key, value }) => {
     return ref;
   }, {});
 };
+
+exports.formatWizards = (wizards, ref) => {
+  if (!wizards.length) return [];
+  return wizards.map(({ name: wizard_name, house }) => {
+    return { wizard_name, house_id: ref[house] };
+  });
+};
