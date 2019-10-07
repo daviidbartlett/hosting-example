@@ -31,6 +31,14 @@ describe('app', () => {
               expect(body.msg).to.equal('house not found');
             });
         });
+        it('DELETE returns 400 if invalid house id', () => {
+          return request(app)
+            .delete('/api/houses/bad_id')
+            .expect(400)
+            .then(({ body }) => {
+              expect(body.msg).to.equal('bad request');
+            });
+        });
       });
     });
   });
