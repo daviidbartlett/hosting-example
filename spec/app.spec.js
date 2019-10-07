@@ -40,6 +40,32 @@ describe('app', () => {
             });
         });
       });
+      describe('/', () => {
+        it('GET responds with 200 and array of houses objects', () => {
+          return request(app)
+            .get('/api/houses')
+            .expect(200)
+            .then(({ body }) => {
+              expect(body.houses).to.be.an('array');
+              expect(body.houses).to.have.length(5);
+              expect(body.houses[0]).to.contain.keys(
+                'house_id',
+                'house_name',
+                'founder',
+                'animal'
+              );
+            });
+        });
+        it('GET responds with 200 and wizard count property', () => {
+          return request(app)
+            .get('/api/houses')
+            .expect(200)
+            .then(({ body }) => {
+              expect(body.houses[0]).to.be.haveOwnProperty('wizard_count');
+              expect(body.houses[0].wizard_count).to.be.a('number');
+            });
+        });
+      });
     });
   });
 });
