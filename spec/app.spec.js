@@ -18,6 +18,11 @@ describe('app', () => {
             .delete('/api/houses/5')
             .expect(204);
         });
+        it('DELETE if house has references in other tables will still successfully delete', () => {
+          return request(app)
+            .delete('/api/houses/1')
+            .expect(204);
+        });
       });
     });
   });
