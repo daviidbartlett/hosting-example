@@ -8,7 +8,7 @@ exports.deleteHouseById = (req, res, next) => {
 };
 
 exports.getHouses = (req, res, next) => {
-  selectHouses()
+  selectHouses(req.query)
     .then(houses => {
       res.status(200).send({ houses });
     })

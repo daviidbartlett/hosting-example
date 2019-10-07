@@ -47,7 +47,6 @@ describe('app', () => {
             .expect(200)
             .then(({ body }) => {
               expect(body.houses).to.be.an('array');
-              expect(body.houses).to.have.length(5);
               expect(body.houses[0]).to.contain.keys(
                 'house_id',
                 'house_name',
@@ -63,6 +62,31 @@ describe('app', () => {
             .then(({ body }) => {
               expect(body.houses[0]).to.be.haveOwnProperty('wizard_count');
               expect(body.houses[0].wizard_count).to.be.a('number');
+            });
+        });
+        it('GET has default limit of 2 houses applied', () => {
+          return request(app)
+            .get('/api/houses')
+            .expect(200)
+            .then(({ body }) => {
+              expect(body.houses).to.have.length(2);
+            });
+        });
+        it('GET / query of limit increases number of houses returned ', () => {
+          return request(app)
+            .get('/api/houses?limit=4')
+            .expect(200)
+            .then(({ body }) => {
+              expect(body.houses).to.have.length(4);
+            });
+        });
+        it('GET / query allows to get all houses of an animal', () => {
+          return request(app)
+            .get('/api/houses?animal=Badger')
+            .expect(200)
+            .then(({ body }) => {
+              expect(body.houses).to.have.length(1);
+              expect(body.houses[0].animal).to.equal('Badger');
             });
         });
       });
