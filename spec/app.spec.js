@@ -23,6 +23,14 @@ describe('app', () => {
             .delete('/api/houses/1')
             .expect(204);
         });
+        it('DELETE returns 404 if house not found', () => {
+          return request(app)
+            .delete('/api/houses/7')
+            .expect(404)
+            .then(({ body }) => {
+              expect(body.msg).to.equal('house not found');
+            });
+        });
       });
     });
   });

@@ -4,5 +4,5 @@ exports.deleteHouseById = (req, res, next) => {
     .then(() => {
       res.sendStatus(204);
     })
-    .catch(console.log);
+    .catch(next);
 };
